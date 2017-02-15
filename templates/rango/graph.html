@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Graph{% endblock %}
+
+
+{% block body_block %}
+<meta charset="utf-8">
+<style type="text/css">
+iframe {
+position: fixed;
+right: 0;
+bottom: 0;
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+z-index: -100;
+background: url('/assets/images/polina.jpg') no-repeat;
+background-size: cover;
+}
+
+/*****************************/
+
+.overlay {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  background: rgba(0,0,0,0.3);
+  display: block;
+  position: absolute;
+  top: 10%;
+  left: 30%;
+}
+</style>
+
+        <strong>{{ boldmessage }}</strong><br />
+<iframe width="800" height="500" src="//www.youtube.com/embed/7aiOSwQGsA8?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    </body>
+{% endblock %}

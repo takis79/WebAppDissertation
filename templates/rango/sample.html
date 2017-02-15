@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
+
+
+{% block body_block %}
+<meta charset="utf-8">
+<style type="text/css">
+iframe {
+position: fixed;
+right: 0;
+bottom: 0;
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+z-index: -100;
+background-size: cover;
+}
+
+
+</style>
+
+    <head>
+        <title>iSport</title>
+    </head>
+
+    <body>
+        <h1>Welcome to iSport Interactive System</h1>
+        <strong>{{ boldmessage }}</strong><br />
+  		<br/>This video was created by Vice.com<br/>
+    </body>
+        <a href="/rango/">Index</a>
+{% endblock %}

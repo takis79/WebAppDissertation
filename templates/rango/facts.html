@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
+
+
+{% block body_block %}
+<html>
+	<head>
+<style>
+body {background-color: beige;}
+</style>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+	</head>
+	<body>
+		<div id="tl">111111<br/>
+
+
+		</div>
+
+		<script language="javascript">
+                   document.getElementById("tl").innerHTML='<object type="text/html" data="http://isport.esy.es/"  width="2000px" height="800px" ></object>';
+			</script>
+	</body>
+</html>
+{% endblock %}

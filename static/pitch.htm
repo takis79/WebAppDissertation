@@ -1,0 +1,144 @@
+<html>
+<head>
+      <link rel="stylesheet" href="css/style.css" media="screen" type="text/css"/>
+      <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  <title>iSport</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFSaTpf802VTdXvM19FJpnp_5IvPt2kuo&callback=initMap&libraries=places,geometry" type="text/javascript"></script>
+</head>
+<body>
+  <div id="map">
+</div>
+<script type="text/javascript">
+    var locations = [
+      ['Super Soccer Glasgow', 55.8498123, -4.269121600000062, 1,'','0141 429 8097','http://supersocceruk.com/'],
+      ['Goals Glasgow West', 55.9110586, -4.390366200000017, 2, '5-a-side football chain venue with all-weather pitches for organised competitions and casual play.', '0141 944 2020', 'www.apoel.net'],
+['Springburn Park Synthetic Pitch',55.8874034,-4.2199097000000165,3,'','0141 557 1692','http://www.glasgowlife.org.uk/sport/football/play/football-pitches/pages/springburn.aspx'],
+      ['The Firhill Complex', 55.8770329, -4.266687899999965, 4,'','0141 332 7222','https://www.facebook.com/The-Firhill-Complex-164236137100596/'],
+      ['Powerleague Glasgow', 55.867045, -4.238163999999983, 5,'Football chain with outdoor 5- or 7-a-side pitches and organised league facilities.','0141 553 1515','https://www.powerleague.co.uk/5-a-side/scotland/glasgow'],
+      ['Glasgow Green Football Centre', 55.8466731, -4.234114399999953, 6,'','0141 276 0680','http://www.glasgowlife.org.uk/sport/football/play/football-centres/glasgow-green-football-centre/pages/home.aspx'],
+      ['Ibrox Football Centre', 55.851287, -4.309741600000052, 7, 'Situated opposite Ibrox Stadium, Ibrox Football Centre has a full size floodlit synthetic pitch,3 seven-a-side pitches and Changing facilities', '0141 276 4095', 'http://www.glasgowlife.org.uk/sport/football/play/football-centres/ibrox-football-centre/pages/default.aspx'],
+      ['Toryglen Regional Football Centre',55.8286376 ,-4.252448400000048 , 8, 'Covered and open-air synthetic 7-a-side pitches plus an on-site cafe, next to Hampden Park stadium.', '0141 276 0570', 'http://www.glasgowlife.org.uk/sport/football/play/football-centres/toryglen-regional-football-centre/pages/home.aspx'],
+      ['Pro-Soccer Glasgow',55.7975688 , -4.3201182000000244, 9, 'More than a Game', '0141 621 4459', 'http://www.pro-soccer.co.uk/'],
+      ['The Pitches', 55.8229218,-4.297446300000047 ,10 , 'The Pitches offers you an unrivalled indoor playing environment to protect you from the great Scottish weather and ensuring your game is always on.', '0141 649 9345', 'http://www.thepitches.co.uk/'],
+    ];
+//      ['', , , , '', '', ''],
+    var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 55.860773, lng: -4.245175},
+          zoom: 12,
+ styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        });
+      
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) { 
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+		label: labels[labelIndex++ % labels.length],
+        map: map,
+        title: locations[i][0]
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent("<div style ='display:table-cell'>" +"<b>" + locations[i][0] +"</b>" +"<br>"+ locations[i][4] +"</br>" +"<b>Telephone: </b>"+" " + locations[i][5] + "<br><a href='" + locations[i][6]+ "'>Visit website</a><br/></div>");
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+</body>
+</html>
